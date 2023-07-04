@@ -5,15 +5,18 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './component/home/home.component';
 import { FoodRecipeComponent } from './component/food-recipe/food-recipe.component';
-import { HttpClientModule } from "@angular/common/http"
+import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http"
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LoadingComponent } from './component/loading/loading.component';
+import { LoadingInterceptor } from './loading.interceptor';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    FoodRecipeComponent
+    FoodRecipeComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,
@@ -22,7 +25,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    {provide:HTTP_INTERCEPTORS,useClass:LoadingInterceptor,multi:true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

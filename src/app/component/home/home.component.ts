@@ -1,8 +1,7 @@
-import { Component, OnInit, inject } from '@angular/core';
-import { FormControl, FormControlName, FormGroup } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
-import { Observable, debounceTime, filter, map, switchMap } from 'rxjs';
-import { Hit, Recipe } from 'src/app/model/recipe';
+import { Component, OnInit, } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { Observable, debounceTime, switchMap } from 'rxjs';
+import { Hit } from 'src/app/model/recipe';
 // import { OwlOptions } from 'ngx-owl-carousel-o'
 import { RecipeService } from 'src/app/services/recipe.service';
 
@@ -11,7 +10,7 @@ import { RecipeService } from 'src/app/services/recipe.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit{
   loadingg: boolean = false;
   recipe!: Hit[]
   HitList?: Observable<Hit[]>;
@@ -30,6 +29,7 @@ export class HomeComponent {
     );
 
     this.HitList.subscribe((res) => {
+
       this.recipe = res
     })
     // this.loadingg = true
@@ -40,21 +40,20 @@ export class HomeComponent {
     // })
     // this.recipeservice.loading.subscribe(val=>this.loadingg = val)
 
-
-
-
-    this.recipeservice.$isTrue.subscribe(val=>{
-      this.istrue = val
-    })
-
-    console.log(this.istrue);
   }
-
-  iStrue(){
-    this.recipeservice.$isTrue.next(true)
-  }
-
+  ngOnInit(): void {
+    this.homePage()
+    }
 
 
+    homePage(){
+      this.recipeservice.getRecipe('veg').subscribe(val=>{
+        this.recipe = val
+        console.log(this.recipe);
+        })
+    }
 
 }
+
+
+

@@ -1,37 +1,37 @@
-<div *ngIf="$data | async as data" class="container font-Montserrat mx-auto shadow-lg ">
-  <div class="w-full flex md:gap-0 flex-col md:flex-row ">
-    <div class="md:w-3/6 h-96 md:h-[750px] w-full rounded-lg bg-cover" style="background-image: url({{data.image}});">
-      <div class="bg-no-repeat flex border rounded-lg h-full space-y-2 backdrop-blur-lg bg-black/20 justify-center items-center">
-        <img class="md:w-[650px] h-96 w-96 rounded-full md:h-[650px] object-cover" src="{{ data.image }}" alt="" />
+<div class="md:h-screen flex justify-center items-center font-semibold">
+  <div *ngIf="$data | async as data" class="container font-Montserrat mx-auto shadow-lg ">
+    <div class="w-full flex flex-col md:flex-row md:mt-0 bg-no-repeat bg-cover"  style="background-image: url({{data.image}});">
+      <div class="md:w-3/6 h-96 md:h-[750px] w-full rounded-lg bg-cover" >
+        <div class="bg-no-repeat flex h-full space-y-2 backdrop-blur-md bg-black/40 p-2 pt-6 justify-center items-center">
+          <img loading="lazy" class="md:w-[600px] h-96 w-96 lg:rounded-full md:h-[600px] object-cover" src="{{ data.image }}" alt="" />
+        </div>
+      </div>
+  <div class="bg-no-repeat rounded-lg bg-cover md:w-3/6 w-full" >
+    <div class=" text-white backdrop-blur-md bg-black/40 h-[750px] overflow-y-hidden p-5  flex flex-col text-base md:text-lg"  >
+      <h1 class="md:text-2xl font-semibold text-lg">{{ data.label }}</h1>
+      <span class="text-lg mt-7 mb-2 border-b-2 border-white w-fit font-semibold">Ingredients</span>
+      <div class="max-h-[450px] overflow-y-scroll">
+        <li class="" *ngFor="let ingre of data.ingredientLines">{{ ingre }}</li>
+      </div>
+      <div class="w-full">
+        <p class="mt-7 mb-4 border-b-2 border-white w-fit font-semibold">
+          Deatils
+        </p>
+        <span class="font-semibold text-base w-fit border-b-2 border-white my-4">Cuisine type</span>
+          <p *ngFor="let itemC of data.cuisineType"> {{itemC}}</p>
+        <span class="font-semibold text-base my-4 w-fit border-b-2 border-white">Meal type</span>
+        <p>{{data.mealType[0]}}</p>
+        <button class="mt-6">
+          <a href="{{ data.url }}">How to Cook?<span class="text-blue-400 font-semibold">Click Here!</span></a>
+        </button>
+      </div>
+      <div class="flex justify-center">
+        <button class="text-white bg-blue-700 mt-12 rounded-xl w-[80%] p-3" routerLink="/">
+          Back to Home
+        </button>
       </div>
     </div>
-<div class="bg-no-repeat rounded-lg bg-cover md:w-3/6 w-full" style="background-image: url({{data.image}});">
-  <div class=" text-white border backdrop-blur-lg bg-black/60 h-[750px] overflow-y-hidden p-5  flex flex-col text-base md:text-lg"  >
-    <h1 class="md:text-2xl font-semibold text-lg">{{ data.label }}</h1>
-    <span class="text-lg mt-7 mb-2 border-b-2 border-white w-fit font-semibold">Ingredients</span>
-    <div class="max-h-[450px] overflow-y-scroll">
-      <li class="" *ngFor="let ingre of data.ingredientLines">{{ ingre }}</li>
-    </div>
-    <div class="w-full">
-      <p class="mt-7 mb-4 border-b-2 border-white w-fit font-semibold">
-        Deatils
-      </p>
-      <span class="font-semibold text-base w-fit border-b-2 border-white my-4">Cuisine type</span>
-        <p *ngFor="let itemC of data.cuisineType"> {{itemC}}</p>
-      <span class="font-semibold text-base my-4 w-fit border-b-2 border-white">Meal type</span>
-      <p>{{data.mealType[0]}}</p>
-      <button class="mt-6">
-        <a href="{{ data.url }}">How to Cook?<span class="text-blue-400 font-semibold">Click Here!</span></a>
-      </button>
-    </div>
-
-    <div class="flex justify-center">
-      <button (click)="istrue()" class="text-white bg-blue-700 mt-12 rounded-xl w-[80%] p-3" routerLink="/">
-        Back to Home
-      </button>
-    </div>
   </div>
-</div>
-
+    </div>
   </div>
 </div>

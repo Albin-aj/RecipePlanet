@@ -27,12 +27,5 @@ export class FoodRecipeComponent {
       return res.recipe
     }))
 
-
-    this.$data.subscribe(console.log)
-
-  }
-
-  istrue(){
-    this.service.$isTrue.next(false)
   }
 }
